@@ -19,7 +19,9 @@ class TestGemInstaller < Gem::InstallerTestCase
 
     super
 
-    Gem.configuration = @config
+    if defined? @config
+      Gem.configuration = @config
+    end
   end
 
   def test_app_script_text

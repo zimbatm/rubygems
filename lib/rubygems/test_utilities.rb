@@ -121,7 +121,7 @@ class Gem::FakeFetcher
     path = if Dir.pwd == install_dir then # see fetch_command
              install_dir
            else
-             File.join install_dir, "cache"
+             Gem.cache_dir
            end
 
     path = File.join path, name

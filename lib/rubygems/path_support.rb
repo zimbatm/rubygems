@@ -13,6 +13,10 @@ class Gem::PathSupport
   attr_reader :path
 
   ##
+  # Directory with .gem files
+  attr_reader :cache_dir
+
+  ##
   # Directory with spec cache
   attr_reader :spec_cache_dir # :nodoc:
 
@@ -32,6 +36,9 @@ class Gem::PathSupport
     end
 
     self.path = env["GEM_PATH"] || ENV["GEM_PATH"]
+
+    @cache_dir = env["GEM_CACHE"] || ENV["GEM_CACHE"] ||
+      Gem.default_cache_dir
 
     @spec_cache_dir =
       env["GEM_SPEC_CACHE"] || ENV["GEM_SPEC_CACHE"] ||

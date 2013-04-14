@@ -99,6 +99,8 @@ lib/rubygems/defaults/operating_system.rb
 
       out << "  - EXECUTABLE DIRECTORY: #{Gem.bindir}\n"
 
+      out << "  - CACHE DIRECTORY: #{Gem.cache_dir}\n"
+
       out << "  - SPEC CACHE DIRECTORY: #{Gem.spec_cache_dir}\n"
 
       out << "  - RUBYGEMS PLATFORMS:\n"

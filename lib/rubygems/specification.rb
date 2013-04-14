@@ -1363,7 +1363,7 @@ class Gem::Specification < Gem::BasicSpecification
   # spec's cached gem.
 
   def cache_dir
-    @cache_dir ||= File.join base_dir, "cache"
+    @cache_dir ||= Gem.cache_dir
   end
 
   ##

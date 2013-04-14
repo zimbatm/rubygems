@@ -217,6 +217,7 @@ class Gem::TestCase < MiniTest::Unit::TestCase
 
     @gemhome  = File.join @tempdir, 'gemhome'
     @userhome = File.join @tempdir, 'userhome'
+    ENV["GEM_CACHE"] = File.join @tempdir, 'gem_cache'
     ENV["GEM_SPEC_CACHE"] = File.join @tempdir, 'spec_cache'
 
     @orig_ruby = if ENV['RUBY'] then
@@ -525,7 +526,7 @@ class Gem::TestCase < MiniTest::Unit::TestCase
   # 'cache'</tt>.  Automatically creates files based on +spec.files+
 
   def util_build_gem(spec)
-    dir = spec.gem_dir
+    dir = spec.cache_dir
     FileUtils.mkdir_p dir
 
     Dir.chdir dir do
@@ -538,9 +539,6 @@ class Gem::TestCase < MiniTest::Unit::TestCase
       use_ui Gem::MockGemUi.new do
         Gem::Package.build spec
       end
-
-      cache = spec.cache_file
-      FileUtils.mv File.basename(cache), cache
     end
   end
 
@@ -638,11 +636,6 @@ class Gem::TestCase < MiniTest::Unit::TestCase
       end
 
       util_build_gem spec
-
-      cache_file = File.join @tempdir, 'gems', "#{spec.full_name}.gem"
-      FileUtils.mkdir_p File.dirname cache_file
-      FileUtils.mv spec.cache_file, cache_file
-      FileUtils.rm spec.spec_file
     end
 
     spec

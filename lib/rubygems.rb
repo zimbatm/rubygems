@@ -387,6 +387,10 @@ module Gem
     paths.path
   end
 
+  def self.cache_dir
+    paths.cache_dir
+  end
+
   def self.spec_cache_dir
     paths.spec_cache_dir
   end

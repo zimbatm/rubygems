@@ -15,6 +15,13 @@ module Gem
   end
 
   ##
+  # Default cache directory path to store downloaded .gem files
+
+  def self.default_cache_dir
+    File.join Gem.user_home, '.gem', 'cache'
+  end
+
+  ##
   # Default spec directory path to be used if an alternate value is not
   # specified in the environment
 
