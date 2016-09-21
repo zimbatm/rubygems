@@ -23,7 +23,7 @@ class Gem::PathSupport
   # hashtable, or defaults to ENV, the system environment.
   #
   def initialize(env)
-    @home     = env["GEM_HOME"] || Gem.default_dir
+    @home     = env["GEM_HOME"] || Gem.user_dir
 
     if File::ALT_SEPARATOR then
       @home   = @home.gsub(File::ALT_SEPARATOR, File::SEPARATOR)
