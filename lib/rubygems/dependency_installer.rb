@@ -16,7 +16,7 @@ class Gem::DependencyInstaller
   include Gem::UserInteraction
 
   DEFAULT_OPTIONS = { # :nodoc:
-    :env_shebang         => false,
+    :env_shebang         => true,
     :document            => %w[ri],
     :domain              => :both, # HACK dup
     :force               => false,
