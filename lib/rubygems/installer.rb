@@ -764,7 +764,15 @@ TEXT
   # Ensures that files can't be installed outside the gem directory.
 
   def extract_files
-    @package.extract_files gem_dir
+    ret = @package.extract_files gem_dir
+    if ENV['NIX_POST_EXTRACT_FILES_HOOK']
+      puts
+      puts "running NIX_POST_EXTRACT_FILES_HOOK #{ENV['NIX_POST_EXTRACT_FILES_HOOK']} #{gem_dir}"
+      system(ENV['NIX_POST_EXTRACT_FILES_HOOK'], gem_dir.to_s)
+      puts "running NIX_POST_EXTRACT_FILES_HOOK done"
+      puts
+    end
+    ret
   end
 
   ##
